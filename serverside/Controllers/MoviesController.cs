@@ -14,7 +14,6 @@ namespace serverside.Controllers
     [ApiController]
     public class MoviesController : ControllerBase
     {
-        List<Root> _apiQueryResponse = new List<Root>();
         private readonly IMovieService _movieService;
 
         public MoviesController(IMovieService movieService)

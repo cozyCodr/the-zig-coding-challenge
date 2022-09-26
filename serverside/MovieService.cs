@@ -27,25 +27,31 @@ namespace serverside
             _httpClient = httpClient;
         }
 
-        public async Task<List<Root>> GetPopularMovies()
+        public async Task<List<PopularMovies.Root>> GetPopularMovies()
         {
-            var _apiQueryResponse = new List<Root>();
+            var _apiQueryResponse = new List<PopularMovies.Root>();
 
             var response = await _httpClient.GetAsync(string.Format("/3/trending/movie/day?api_key={0}", api_key));
             string responseContent = await response.Content.ReadAsStringAsync();
-            Root myDeserializedClass = JsonConvert.DeserializeObject<Root>(responseContent);
+            PopularMovies.Root myDeserializedClass = JsonConvert.DeserializeObject<PopularMovies.Root>(responseContent);
             _apiQueryResponse.Add(myDeserializedClass);
 
             return _apiQueryResponse;
         }
 
-        Task<List<Root>> IMovieService.GetMovieById(int id)
+        async Task<List<PopularMovies.Root>> IMovieService.GetMovieById(int movie_id)
         {
-            var _apiQueryResponse = new List<Root>();
-            throw new NotImplementedException();
+            var _apiQueryResponse = new List<PopularMovies.Root>();
+
+            var response = await _httpClient.GetAsync(string.Format("/3/movie/{0}?api_key={1}",movie_id, api_key));
+            string responseContent = await response.Content.ReadAsStringAsync();
+            PopularMovies.Root myDeserializedClass = JsonConvert.DeserializeObject<PopularMovies.Root>(responseContent);
+            _apiQueryResponse.Add(myDeserializedClass);
+
+            return _apiQueryResponse;
         }
 
-        Task<List<Root>> IMovieService.SearchMovie(string query)
+        Task<List<PopularMovies.Root>> IMovieService.SearchMovie(string query)
         {
             throw new NotImplementedException();
         }
