@@ -24,16 +24,16 @@ namespace serverside.Controllers
 
         // GET api/popular
         [HttpGet("popular")]
-        public async Task<List<Root>> GetPopularMovies()
+        public async Task<List<PopularMovies.Root>> GetPopularMovies()
         {
             return await _movieService.GetPopularMovies();
         }
 
         // GET api/movie/2
         [HttpGet("movie/{id}")]
-        public async Task<List<Root>> GetMovieById(int id)
+        public async Task<List<PopularMovies.Root>> GetMovieById(int id)
         {
-            return new List<Root>();
+            return new List<PopularMovies.Root>();
         }
 
         // GET api/search

@@ -11,9 +11,9 @@ namespace serverside
 
     public interface IMovieService
     {
-        Task<List<Root>> GetPopularMovies();
-        Task<List<Root>> GetMovieById(int id);
-        Task<List<Root>> SearchMovie(string query);
+        Task<List<PopularMovies.Root>> GetPopularMovies();
+        Task<List<PopularMovies.Root>> GetMovieById(int id);
+        Task<List<PopularMovies.Root>> SearchMovie(string query);
     }
 
 
@@ -41,6 +41,7 @@ namespace serverside
 
         Task<List<Root>> IMovieService.GetMovieById(int id)
         {
+            var _apiQueryResponse = new List<Root>();
             throw new NotImplementedException();
         }
 
