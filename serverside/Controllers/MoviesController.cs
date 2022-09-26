@@ -30,15 +30,17 @@ namespace serverside.Controllers
 
         // GET api/movie/2
         [HttpGet("movie/{id}")]
-        public async Task<List<PopularMovies.Root>> GetMovieById(int id)
+        public async Task<List<MovieDetails.Root>> GetMovieById(int id)
         {
-            return new List<PopularMovies.Root>();
+            return await _movieService.GetMovieById(id);
         }
 
         // GET api/search
-        [HttpGet("search")]
-        public void Get([FromQuery(Name ="query")] string query)
+        [HttpGet("search/")]
+        public async Task<List<SearchResults.Root>> SearchMovie([FromQuery(Name ="query")] string query)
         {
+            Console.WriteLine(query);
+            return await _movieService.SearchMovie(query);
         }
 
        

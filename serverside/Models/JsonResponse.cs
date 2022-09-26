@@ -98,6 +98,7 @@ namespace serverside.Models
 
     }
 
+    /* https://api.themoviedb.org/3/search/movie?api_key=<<api_key>>&query=beast&page=1 */
     public class SearchResults
     {
         public class Result

@@ -12,8 +12,8 @@ namespace serverside
     public interface IMovieService
     {
         Task<List<PopularMovies.Root>> GetPopularMovies();
-        Task<List<PopularMovies.Root>> GetMovieById(int id);
-        Task<List<PopularMovies.Root>> SearchMovie(string query);
+        Task<List<MovieDetails.Root>> GetMovieById(int id);
+        Task<List<SearchResults.Root>> SearchMovie(string query);
     }
 
 
@@ -39,21 +39,28 @@ namespace serverside
             return _apiQueryResponse;
         }
 
-        async Task<List<PopularMovies.Root>> IMovieService.GetMovieById(int movie_id)
+        async Task<List<MovieDetails.Root>> IMovieService.GetMovieById(int movie_id)
         {
-            var _apiQueryResponse = new List<PopularMovies.Root>();
+            var _apiQueryResponse = new List<MovieDetails.Root>();
 
             var response = await _httpClient.GetAsync(string.Format("/3/movie/{0}?api_key={1}",movie_id, api_key));
             string responseContent = await response.Content.ReadAsStringAsync();
-            PopularMovies.Root myDeserializedClass = JsonConvert.DeserializeObject<PopularMovies.Root>(responseContent);
+            MovieDetails.Root myDeserializedClass = JsonConvert.DeserializeObject<MovieDetails.Root>(responseContent);
             _apiQueryResponse.Add(myDeserializedClass);
 
             return _apiQueryResponse;
         }
 
-        Task<List<PopularMovies.Root>> IMovieService.SearchMovie(string query)
+        async Task<List<SearchResults.Root>> IMovieService.SearchMovie(string query)
         {
-            throw new NotImplementedException();
+            var _apiQueryResponse = new List<SearchResults.Root>();
+
+            var response = await _httpClient.GetAsync(string.Format("/3/search/movie?api_key={0}&query={1}&page=1",api_key, query));
+            string responseContent = await response.Content.ReadAsStringAsync();
+            SearchResults.Root myDeserializedClass = JsonConvert.DeserializeObject<SearchResults.Root>(responseContent);
+            _apiQueryResponse.Add(myDeserializedClass);
+
+            return _apiQueryResponse;
         }
     }
 }
