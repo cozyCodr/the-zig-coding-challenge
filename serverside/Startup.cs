@@ -26,6 +26,10 @@ namespace serverside
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddHttpClient<IMovieService, MovieService>(c=>
+            {
+                c.BaseAddress = new Uri("https://api.themoviedb.org/");
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

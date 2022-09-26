@@ -9,48 +9,31 @@ using serverside.Models;
 
 namespace serverside.Controllers
 {
+
     [Route("api/")]
     [ApiController]
     public class MoviesController : ControllerBase
     {
-        HttpClientHandler _clientHandler = new HttpClientHandler();
+        List<Root> _apiQueryResponse = new List<Root>();
+        private readonly IMovieService _movieService;
 
-        readonly string api_key = Environment.GetEnvironmentVariable("API_KEY");
-        Movie _oMovie = new Movie();
-        List<Movie> _oPopularMovies = new List<Movie>();
-        List<Root> _oApiResponse = new List<Root>();
-
-        public MoviesController()
+        public MoviesController(IMovieService movieService)
         {
-            _clientHandler.ServerCertificateCustomValidationCallback = (sender, cert, chain, sslPolicyErrors) => { return true; };
+            _movieService = movieService;
         }
 
-
-        
         // GET api/popular
-        [HttpGet("response")]
+        [HttpGet("popular")]
         public async Task<List<Root>> GetPopularMovies()
         {
-            _oApiResponse = new List<Root>();
-
-            using (var httpClient = new HttpClient(_clientHandler)) 
-            { 
-                using (var response=await httpClient.GetAsync(string.Format("https://api.themoviedb.org/3/trending/movie/day?api_key={0}", api_key)))
-                {
-                    string apiResponse = await response.Content.ReadAsStringAsync();
-                    Root myDeserializedClass = JsonConvert.DeserializeObject<Root>(apiResponse);
-                    _oApiResponse.Add(myDeserializedClass);
-                }
-            }
-
-            return _oApiResponse;
+            return await _movieService.GetPopularMovies();
         }
 
         // GET api/movie/2
         [HttpGet("movie/{id}")]
-        public ActionResult<string> Get(int id)
+        public async Task<List<Root>> GetMovieById(int id)
         {
-            return "value";
+            return new List<Root>();
         }
 
         // GET api/search
