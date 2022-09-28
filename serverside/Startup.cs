@@ -30,6 +30,14 @@ namespace serverside
             {
                 c.BaseAddress = new Uri("https://api.themoviedb.org/");
             });
+            services.AddCors(options =>
+            {
+                options.AddPolicy("LocalHost",
+                    policy =>
+                    {
+                        policy.WithOrigins("http://localhost:3000");
+                    });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -46,6 +54,7 @@ namespace serverside
 
             app.UseHttpsRedirection();
             app.UseMvc();
+            app.UseCors();
         }
     }
 }
