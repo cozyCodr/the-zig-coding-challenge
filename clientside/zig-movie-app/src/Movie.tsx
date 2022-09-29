@@ -14,9 +14,17 @@ type Props = {
 }
 
 const Movie = (props: Props) => {
+    const imgurl = `https://image.tmdb.org/t/p/w500${props.poster_path}`
     return (
         <div>
-            <Button variant="primary">Click Me!</Button>
+            <Card className="bg-dark text-white" style={{ width: '12rem', height: '16rem', margin: "3rem 1rem"}}>
+                <Card.Img src={imgurl} alt="Card image" />
+                <Card.ImgOverlay>
+                    <Card.Title>{props.title}</Card.Title>
+                    <Card.Text>{props.release_date}</Card.Text>
+                    <Card.Text>{props.vote_average}</Card.Text>
+                </Card.ImgOverlay>
+            </Card>
         </div>
     )
 }

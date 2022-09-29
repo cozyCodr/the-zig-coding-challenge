@@ -30,11 +30,10 @@ const Movies = () => {
     }
     
     return (
-        <div>
+        <div className='container-fluid d-flex flex-wrap justify-content-center' >
             {topMovies && topMovies.map((movie, key )=> {
                 return (
-                    <div key={key}>
-                        <Movie 
+                        <Movie key={key}
                             id={movie.id}
                             title={movie.title}
                             original_language={movie.original_language}
@@ -45,7 +44,6 @@ const Movies = () => {
                             release_date={movie.release_date}
                             vote_average={movie.vote_average}
                         />
-                    </div>
                 )
             })}
         </div>
