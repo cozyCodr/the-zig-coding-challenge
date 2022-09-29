@@ -6,11 +6,11 @@ export function getPopularMovies(){
 }
 
 // ex: proxied API request to -> api/movie/1145
-export function getMovieDetails(id: number){
-    fetch(`/api/movie/${id}`)
+export function getMovieDetails(id: string){
+    return fetch(`/api/movie/${id}`)
 }
 
 // ex: proxied API request to -> api/search?query="Cruella"
 export function searchMovie(substring: string){
-    fetch(`/api/search?query=${substring}`)
+    return fetch(`/api/search?query=${substring}`)
 }

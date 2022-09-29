@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
 
 import { getPopularMovies } from './Client';
-import { Result } from './Interfaces';
+import { Result } from './PopularMoviesInterfaces';
 import Movie from './Movie';
 
 
@@ -26,13 +26,12 @@ const Movies = () => {
             setTopMovies(movies[0].results)
             setIsFetching(false)
         }))
-
     }
     
     return (
         <div className='container-fluid mx-auto bg-black'>            
             <div className='container-fluid d-flex flex-wrap justify-content-center' >
-                {topMovies && topMovies.map((movie, key )=> {
+                {topMovies && topMovies.map((movie, key)=> {
                     return (
                             <Movie key={key}
                                 id={movie.id}

@@ -10,7 +10,7 @@ export default function App ()
   return (
     <Routes>
       <Route path='/' element={<Movies />} />
-      <Route path='/details:id' element={<Details />} />
+      <Route path='/m/:id/details' element={<Details />} />
     </Routes>
   )
 };
