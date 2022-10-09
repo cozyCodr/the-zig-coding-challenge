@@ -16,16 +16,11 @@ const Details = (props: Props) => {
     .then(mvDetails => {
       setDetails(mvDetails[0])
       setIsFetching(false)
-      console.log(mvDetails[0])
-      console.log(details)
     }))
   }, [])
 
-    
-  
-
   return (
-    <div>
+    <div className=" h-100">
       {
         details ? 
         <ul>
@@ -36,7 +31,9 @@ const Details = (props: Props) => {
           <li>{details.release_date}</li>
         </ul>
         : 
-        <h1>loading</h1>
+        <div className="h-full">
+          <h1>loading</h1>
+        </div>
       }
     </div>
 
