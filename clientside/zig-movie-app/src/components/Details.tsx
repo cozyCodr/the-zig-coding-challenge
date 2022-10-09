@@ -1,4 +1,3 @@
-import { url } from 'inspector'
 import React, {useState, useEffect} from 'react'
 import {getMovieDetails} from './Client'
 import { Root } from './MovieDetailsInterfaces'
@@ -43,8 +42,8 @@ const Details = (props: Props) => {
       
         </div>
         : 
-        <div className="h-full">
-          <h1>loading</h1>
+        <div className="d-flex justify-content-center align-items-center h-full" style={{height: "100vh"}}>
+          <h1>loading...</h1>
         </div>
       }
     </div>

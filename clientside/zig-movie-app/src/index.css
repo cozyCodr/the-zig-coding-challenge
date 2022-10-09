@@ -20,6 +20,19 @@ code {
   width: 100%;
 }
 
+#search-box {
+  color: white;
+  border: none;
+  border-bottom: 1px solid green;
+  transition: border-color 1s;
+}
+
+#search-box:focus,
+#search-box:hover {
+  outline: none;
+  border-bottom: 1px solid yellow;
+}
+
 @media screen and (max-width: 575px) {
   #details-page-img {
     width: 90% !important;
