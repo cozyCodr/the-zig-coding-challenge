@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import {getMovieDetails} from './Client'
 import { Root } from './MovieDetailsInterfaces'
+import { Link } from 'react-router-dom'
 
 type Props = {}
 
@@ -32,7 +33,7 @@ const Details = (props: Props) => {
           </div>
           <div className="p-3 text-white">
             <div>
-              <h1 className="">{details.title}</h1>
+              <h1 className=""><a className="text-decoration-none" href={details.homepage}>{details.title}</a></h1>
             </div>
             <div className="text-secondary">{details.genres.map(genre => genre.name + " ")}</div>
             <div className=""><p>{details.overview}</p></div>
