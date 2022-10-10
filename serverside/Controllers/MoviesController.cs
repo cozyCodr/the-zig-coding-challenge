@@ -13,7 +13,7 @@ namespace serverside.Controllers
     [ApiController]
     public class MoviesController : ControllerBase
     {
-        private readonly IMovieService _movieService;
+        readonly IMovieService _movieService;
 
         public MoviesController(IMovieService movieService)
         {
